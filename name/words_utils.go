@@ -13,7 +13,7 @@ func read(fs embed.FS, filename string) []string {
 		fmt.Print(e)
 		panic("Nooooooo")
 	}
-	return strings.Split(string(bytes), "\n");
+	return strings.Split(string(bytes), "\n")
 }
 
 type NameGenerator interface {
@@ -42,7 +42,7 @@ func (n *wordGenerator) Choose() string {
 
 func NewWordGenerator(fs embed.FS, filename string) *wordGenerator {
 	return &wordGenerator{
-		words: read(fs, filename),
+		words:         read(fs, filename),
 		NameGenerator: NewNameGenerator(),
 	}
 }

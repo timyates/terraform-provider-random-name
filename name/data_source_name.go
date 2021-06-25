@@ -21,11 +21,16 @@ func dataSourceName() *schema.Resource {
 	return &schema.Resource{
 		ReadContext: dataSourceNameRead,
 		Schema: map[string]*schema.Schema{
+
 			"seed": {
+				Description: "The optional seed to use",
 				Type:     schema.TypeString,
 				Optional: true,
+				ForceNew: true,
 			},
-			"generated": {
+
+			"id": {
+				Description: "The random name",
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -49,9 +54,7 @@ func dataSourceNameRead(ctx context.Context, data *schema.ResourceData, i interf
 		rand.Seed(time.Now().Unix())
 	}
 
-	if err := data.Set("generated", fmt.Sprintf("%s-%s", adjectives.Choose(), nouns.Choose())); err != nil {
-		return diag.FromErr(err)
-	}
+	data.SetId(fmt.Sprintf("%s-%s", adjectives.Choose(), nouns.Choose()))
 
 	return diags
 }
