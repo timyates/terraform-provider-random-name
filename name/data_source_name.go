@@ -23,7 +23,7 @@ func dataSourceName() *schema.Resource {
 		Schema: map[string]*schema.Schema{
 			"seed": {
 				Type:     schema.TypeString,
-				Required: false,
+				Optional: true,
 			},
 			"generated": {
 				Type:     schema.TypeString,
