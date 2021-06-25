@@ -1,21 +1,18 @@
 terraform {
   required_providers {
-    fun = {
+    a = {
       source = "timyates/random-name"
-      version = "0.0.6"
+      version = "0.0.7"
     }
   }
 }
 
-provider "fun" {}
-
-resource "random_name" "name" {
-  seed = "tim"
+provider "a" {
+  # Configuration options
 }
 
-output "name" {
-  value = data.random_name.name.generated
-}
-output "time" {
-  value = data.random_name.name.seed
+resource "a_random_name" "woo" {}
+
+output "out" {
+  value = a_random_name.woo.id
 }

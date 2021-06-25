@@ -19,7 +19,10 @@ var nouns = NewWordGenerator(embeddedFs, "nouns.txt")
 
 func dataSourceName() *schema.Resource {
 	return &schema.Resource{
-		ReadContext: dataSourceNameRead,
+		CreateContext: dataSourceNameRead,
+		ReadContext:   schema.NoopContext,
+		DeleteContext: schema.NoopContext,
+
 		Schema: map[string]*schema.Schema{
 
 			"seed": {
